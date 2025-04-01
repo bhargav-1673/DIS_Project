@@ -1,3 +1,28 @@
+-- Users Table
+-- Stores information about farmers and admins
+CREATE TABLE Users (
+    UserID INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(255) NOT NULL,
+    Email VARCHAR(255) UNIQUE NOT NULL,
+    PasswordHash VARCHAR(255) NOT NULL,
+    Role ENUM('Farmer', 'Admin') NOT NULL,
+    Phone VARCHAR(15),
+    Address TEXT,
+    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Farms Table
+-- Contains details of farms managed by users
+CREATE TABLE Farms (
+    FarmID INT PRIMARY KEY AUTO_INCREMENT,
+    UserID INT,
+    FarmName VARCHAR(255) NOT NULL,
+    Location TEXT,
+    SoilType VARCHAR(100),
+    Size DECIMAL(10,2),
+    FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE
+);
+
 -- Fields Table
 -- Represents individual farm fields that are assigned specific crops
 CREATE TABLE Fields (
