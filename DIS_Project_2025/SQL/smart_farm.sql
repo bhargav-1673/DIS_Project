@@ -102,3 +102,5 @@ CREATE TABLE Reports (
     Data TEXT,
     FOREIGN KEY (FarmID) REFERENCES Farms(FarmID) ON DELETE CASCADE
 );
+
+
